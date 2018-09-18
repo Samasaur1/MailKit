@@ -1,3 +1,3 @@
 # MailKit
 
-A description of this package.
+A Swift framework for sending emails
