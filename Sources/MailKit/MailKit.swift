@@ -1,14 +1,14 @@
 import Foundation
 import AppKit
 
-public func send(emails NUMBER_OF_EMAILS: Int, to TARGET_NAME: String, at TARGET_EMAIL: String, withSubject EMAIL_SUBJECT: String, andContent EMAIL_CONTENT: String) {
+public func send(emails numberOfEmails: Int, to name: String, at email: String, withSubject subject: (_ emailNumber: Int) -> String, andContent content: (_ emailNumber: Int) -> String) {
     let MAIL_WAS_RUNNING = NSWorkspace.shared.runningApplications.filter({ $0.localizedName != nil }).map({ $0.localizedName! }).contains("Mail")
-    for _ in 0..<NUMBER_OF_EMAILS {
+    for i in 0..<numberOfEmails {
         let a = NSAppleScript(source: """
-            set recipientName to "\(TARGET_NAME)"
-            set recipientAddress to "\(TARGET_EMAIL)"
-            set theSubject to "\(EMAIL_SUBJECT)"
-            set theContent to "\(EMAIL_CONTENT)"
+            set recipientName to "\(name)"
+            set recipientAddress to "\(email)"
+            set theSubject to "\(subject(i))"
+            set theContent to "\(content(i))"
             
             tell application "Mail"
             set theMessage to make new outgoing message with properties {subject:theSubject, content:theContent, visible:true}
