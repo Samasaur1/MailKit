@@ -28,3 +28,12 @@ public func send(emails numberOfEmails: Int, to name: String, at email: String, 
         a.executeAndReturnError(nil)
     }
 }
+public func send(emails numberOfEmails: Int, to name: String, at email: String, withSubject subject: String, andContent content: String) {
+    send(emails: numberOfEmails, to: name, at: email, withSubject: {_ in subject}, andContent: {_ in content})
+}
+public func send(emails numberOfEmails: Int, to name: String, at email: String, withSubject subject: (_ emailNumber: Int) -> String, andContent content: String) {
+    send(emails: numberOfEmails, to: name, at: email, withSubject: subject, andContent: {_ in content})
+}
+public func send(emails numberOfEmails: Int, to name: String, at email: String, withSubject subject: String, andContent content: (_ emailNumber: Int) -> String) {
+    send(emails: numberOfEmails, to: name, at: email, withSubject: {_ in subject}, andContent: content)
+}
