@@ -1,6 +1,9 @@
 import Foundation
 import AppKit
 
+public func sendEmail(to name: String, at email: String, withSubject subject: String, andContent content: String) {
+    send(emails: 1, to: name, at: email, withSubject: {_ in subject}, andContent: {_ in content})
+}
 public func send(emails numberOfEmails: Int, to name: String, at email: String, withSubject subject: (_ emailNumber: Int) -> String, andContent content: (_ emailNumber: Int) -> String) {
     let MAIL_WAS_RUNNING = NSWorkspace.shared.runningApplications.filter({ $0.localizedName != nil }).map({ $0.localizedName! }).contains("Mail")
     for i in 0..<numberOfEmails {
