@@ -25,7 +25,7 @@ public func send(emails numberOfEmails: Int, to name: String, at email: String, 
         a.compileAndReturnError(nil)
         a.executeAndReturnError(nil)
     }
-    if MAIL_WAS_RUNNING {
+    if !MAIL_WAS_RUNNING {
         let a = NSAppleScript(source: "tell app \"Mail\" to quit")!
         a.compileAndReturnError(nil)
         a.executeAndReturnError(nil)
