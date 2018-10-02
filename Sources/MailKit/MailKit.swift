@@ -74,7 +74,7 @@ public class Mailer {
         guard let numberOfEmails = (numberOfEmails ?? self.numberOfEmails), let name = (name ?? self.targetName), let email = (email ?? self.targetEmail), let subject = (subject ?? self.subject), let content = (content ?? self.content) else {
             throw Error.NotConfiured
         }
-        send(emails: numberOfEmails, to: name, at: email, withSubject: subject, andContent: content)
+        try send(emails: numberOfEmails, to: name, at: email, withSubject: subject, andContent: content)
     }
     
     enum Error: Swift.Error {
