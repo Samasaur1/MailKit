@@ -8,8 +8,11 @@ let package = Package(
     products: [
         .library(name: "MailKit", targets: ["MailKit"]),
     ],
+    dependencies: [
+        .package(url: "https://github.com/Samasaur1/ProtocolKit.git", from: "1.0.2"),
+    ],
     targets: [
-        .target(name: "MailKit", dependencies: []),
+        .target(name: "MailKit", dependencies: ["ProtocolKit"]),
         .testTarget(name: "MailKitTests", dependencies: ["MailKit"]),
     ]
 )

@@ -1,7 +1,8 @@
 import Foundation
 import AppKit
+import ProtocolKit
 
-public class Mailer {
+public class Mailer: Copiable {
     public init() {}
     public var senderEmail: String? = nil
     public var targetEmail: String? = nil
@@ -81,5 +82,16 @@ public class Mailer {
         case NotConfiured
         case AppleScriptCompilation(info: NSDictionary)
         case AppleScriptExecution(info: NSDictionary)
+    }
+    
+    public func copy() -> Mailer {
+        let m = Mailer()
+        m.senderEmail = self.senderEmail
+        m.targetEmail = self.targetEmail
+        m.numberOfEmails = self.numberOfEmails
+        m.targetName = self.targetName
+        m.subject = self.subject
+        m.content = self.content
+        return m
     }
 }
